@@ -1,5 +1,15 @@
-# CodeOps Portfolio
+This repository contains my CodeOps exercises, assignments, and notes for the IBT College CodeOps program.
 
-This repository contains my CodeOps exercises.
+## Module-01
 
-Name: Hamere Gashaw
+- Day 01
+  - Terminal commands
+  - Git basics
+  - Repository setup
+
+- Day 02
+  - Python practice exercises
+  - TeleBirr Tip Calculator
+  - Customer Report
+
+**Student:** Hamere Gashaw
