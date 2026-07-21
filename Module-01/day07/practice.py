@@ -19,3 +19,20 @@ print(accounts['CBE-1'])
 
 # O(log n) - binary search
 # Binary search cuts the search space in half each step.
+import time
+
+account_list = [f'ACC-{i}' for i in range(100000)]
+account_dict = {f'ACC-{i}': i for i in range(100000)}
+
+target = 'ACC-99999'
+
+start = time.perf_counter()
+target in account_list
+list_time = time.perf_counter() - start
+
+start = time.perf_counter()
+target in account_dict
+dict_time = time.perf_counter() - start
+
+print('List lookup:', list_time)
+print('Dict lookup:', dict_time)
