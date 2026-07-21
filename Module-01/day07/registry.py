@@ -43,3 +43,20 @@ class AccountRegistry:
             accounts.append(self.by_number[number])
 
         return accounts
+    def undo_last(self):
+        if not self.history:
+            print('No transaction to undo.')
+            return
+
+        tx_type, amount = self.history.pop()
+
+        if tx_type == 'deposit':
+            self.balance -= amount
+            print(f'Undo deposit of {amount} ETB')
+
+        elif tx_type == 'withdraw':
+            self.balance += amount
+            print(f'Undo withdrawal of {amount} ETB')
+
+    def statement(self):
+        print(f'{self.owner} ({self.account_number}) - Balance: {self.balance} ETB')
