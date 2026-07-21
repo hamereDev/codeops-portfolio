@@ -61,3 +61,12 @@ while stack.peek() is not None:
     reversed_names.append(stack.pop())
 
 print(reversed_names)
+from collections import deque
+
+queue = deque()
+
+for customer in ['Almaz', 'Hamere', 'Kidist', 'Meti', 'Selam']:
+    queue.append(customer)
+
+while queue:
+    print('Served:', queue.popleft())
