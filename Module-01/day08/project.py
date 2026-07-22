@@ -31,3 +31,40 @@ class AccountRegistry:
 
     def add_account(self, account):
         self.by_number[account.number] = account
+        
+
+# Binary search
+def binary_search(items, target):
+    left = 0
+    right = len(items) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if items[mid] == target:
+            return mid
+        elif items[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+
+# Add these methods inside AccountRegistry
+
+    def top_by_balance(self, n=5):
+        accounts = sorted(
+            self.by_number.values(),
+            key=lambda a: a.balance,
+            reverse=True
+        )
+        return accounts[:n]
+
+    def find_by_number(self, number):
+        numbers = sorted(self.by_number.keys())
+        index = binary_search(numbers, number)
+
+        if index >= 0:
+            return self.by_number[numbers[index]]
+        return None
