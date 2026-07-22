@@ -1,5 +1,14 @@
+
 # day09
 
+from collections import deque
+
+
+class Account:
+    def __init__(self, owner, account_number, balance=0):
+        self.owner = owner
+        self.account_number = account_number
+        self.balance = balance
 class Account:
     def __init__(self, owner, account_number, balance=0):
         self.owner = owner
@@ -21,8 +30,10 @@ class Branch:
 
     def add_account(self, account):
         self.accounts.append(account)
-        def total_balance(self):
-            total = 0
+
+    # Recursive total balance
+    def total_balance(self):
+        total = 0
 
         for acc in self.accounts:
             total += acc.balance
@@ -31,8 +42,6 @@ class Branch:
             total += child.total_balance()
 
         return total
-    from collections import deque
-
 
 # BFS for transfers graph
 def bfs(transfers, start):
@@ -52,7 +61,7 @@ def bfs(transfers, start):
     return visited
 
 
-# ---------------- Sample Data ----------------
+# Sample Data 
 
 # Accounts
 a1 = Account('Almaz', 'CBE-1001', 5000)
