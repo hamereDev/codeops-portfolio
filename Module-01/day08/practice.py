@@ -83,3 +83,43 @@ sorted_list = merge_sort(unsorted_list)
 
 print('Merge sorted:', sorted_list)
 print('Matches sorted():', sorted_list == sorted(unsorted_list))
+
+
+# 4. Sort with a key
+
+accounts = [
+    ('Hamere', 1200),
+    ('Kidist', 4500),
+    ('Meti', 3000),
+    ('Hermi', 800),
+]
+
+sorted_accounts = sorted(accounts, key=lambda item: item[1], reverse=True)
+
+print('Sorted accounts:')
+for name, balance in sorted_accounts:
+    print(name, '-', balance)
+
+
+# 5. Two pointers
+
+def has_pair(nums, target):
+    left = 0
+    right = len(nums) - 1
+
+    while left < right:
+        current = nums[left] + nums[right]
+
+        if current == target:
+            return True
+        elif current < target:
+            left += 1
+        else:
+            right -= 1
+
+    return False
+
+
+# Test
+nums = [1, 2, 4, 7, 11, 15]
+print('Has pair:', has_pair(nums, 15))
