@@ -66,6 +66,19 @@ def binary_search(items, target):
             right = mid - 1
 
     return -1
+# Recursive sum
+def recursive_total(history, index=0):
+    if index >= len(history):
+        return 0
+
+    tx_type, amount = history[index]
+
+    if tx_type == 'deposit':
+        value = amount
+    else:
+        value = -amount
+
+    return value + recursive_total(history, index + 1)
 
 class AccountRegistry:
     def __init__(self):
@@ -107,7 +120,13 @@ class AccountRegistry:
             return self.by_number[numbers[index]]
 
         return None
+    def total_transactions(self, number):
+        account = self.find_by_number(number)
 
+        if account is None:
+            return None
+
+        return recursive_total(account.history)
 # Demo / Test
 
 
@@ -147,3 +166,40 @@ print('Balance after undo:', acc1.balance)
 print('\nUndo again:')
 acc1.undo_last()
 print('Balance after second undo:', acc1.balance)
+# Demo / Test
+
+registry = AccountRegistry()
+
+acc1 = Account('Almaz', 'CBE-1001', 5000)
+acc2 = Account('Hamere', 'CBE-1002', 3000)
+acc3 = Account('Kidist', 'CBE-1003', 7000)
+
+registry.add(acc1)
+registry.add(acc2)
+registry.add(acc3)
+
+# Transactions
+acc1.deposit(1000)
+acc1.withdraw(500)
+
+acc2.deposit(2000)
+
+acc3.withdraw(1000)
+
+print('\n--- Top 2 by balance ---')
+
+for acc in registry.top_by_balance(2):
+    acc.statement()
+
+print('\n--- Binary search lookup ---')
+
+found = registry.find_by_number('CBE-1002')
+
+if found:
+    found.statement()
+
+print('\n--- Recursive transaction total ---')
+
+print('CBE-1001:', registry.total_transactions('CBE-1001'))
+print('CBE-1002:', registry.total_transactions('CBE-1002'))
+print('CBE-1003:', registry.total_transactions('CBE-1003'))
