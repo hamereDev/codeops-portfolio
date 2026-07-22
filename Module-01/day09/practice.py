@@ -107,3 +107,22 @@ def dfs(graph, start, visited=None):
 
 print('\\nDFS visit order from A:')
 print(dfs(graph, 'A'))
+
+
+# 5. Priority queue
+
+import heapq
+
+tasks = []
+
+heapq.heappush(tasks, (3, 'Write report'))
+heapq.heappush(tasks, (1, 'Fix bug'))
+heapq.heappush(tasks, (5, 'Refactor code'))
+heapq.heappush(tasks, (2, 'Reply email'))
+heapq.heappush(tasks, (4, 'Run tests'))
+
+print('\\nTasks by priority:')
+
+while tasks:
+    priority, task = heapq.heappop(tasks)
+    print(priority, '-', task)
