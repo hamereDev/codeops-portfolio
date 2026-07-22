@@ -88,3 +88,22 @@ graph = {
 
 print('\\nBFS reachable from A:')
 print(bfs(graph, 'A'))
+
+
+# 4. Graph DFS
+
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = []
+
+    visited.append(start)
+
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+    return visited
+
+
+print('\\nDFS visit order from A:')
+print(dfs(graph, 'A'))
