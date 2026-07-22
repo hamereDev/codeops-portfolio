@@ -38,3 +38,18 @@ for b in balances:
 print('In-order traversal (sorted):')
 inorder(root)
 print()
+
+
+# 2. Tree depth / height
+
+def height(node):
+    if node is None:
+        return 0
+
+    left_height = height(node.left)
+    right_height = height(node.right)
+
+    return 1 + max(left_height, right_height)
+
+
+print('\\nTree height:', height(root))
